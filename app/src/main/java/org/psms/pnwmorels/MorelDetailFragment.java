@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.psms.pnwmorels.dummy.MorelContent;
+import org.psms.pnwmorels.data.MorelDataSource;
+import org.psms.pnwmorels.data.MorelItem;
 
 /**
  * A fragment representing a single Morel detail screen.
@@ -25,9 +27,9 @@ public class MorelDetailFragment extends Fragment {
 public static final String ARG_ITEM_ID = "item_id";
 
 /**
- * The dummy content this fragment is presenting.
+ * The content this fragment is presenting.
  */
-private MorelContent.MorelItem mItem;
+private MorelItem item;
 
 /**
  * Mandatory empty constructor for the fragment manager to instantiate the
@@ -44,12 +46,13 @@ public void onCreate(Bundle savedInstanceState) {
         // Load the dummy content specified by the fragment
         // arguments. In a real-world scenario, use a Loader
         // to load content from a content provider.
-        mItem = MorelContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+        String key = getArguments().getString(ARG_ITEM_ID);
+        item = MorelDataSource.ITEM_MAP.get(key);
 
         Activity activity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {
-            appBarLayout.setTitle(mItem.content);
+            appBarLayout.setTitle(item.scienceName);
         }
     }
 }
@@ -59,9 +62,16 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
                          Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.morel_detail, container, false);
 
-    // Show the dummy content as text in a TextView.
-    if (mItem != null) {
-        ((TextView) rootView.findViewById(R.id.morel_detail)).setText(mItem.details);
+    // Show the content
+    if (item != null) {
+        // TODO put more fields here.
+        ((TextView) rootView.findViewById(R.id.detail_brief)).setText(item.scienceName);
+        ((TextView) rootView.findViewById(R.id.detail_long)).setText(item.content);
+        if (item.image != null && item.image != "") {
+            ImageView image = (ImageView)(rootView.findViewById(R.id.detail_image_main));
+            int resID = Integer.valueOf(item.image);
+            image.setImageResource(resID);
+        }
     }
 
     return rootView;

@@ -15,7 +15,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import org.psms.pnwmorels.dummy.MorelContent;
+import org.psms.pnwmorels.data.MorelDataSource;
+import org.psms.pnwmorels.data.MorelItem;
 
 import java.util.List;
 
@@ -24,8 +25,8 @@ import java.util.List;
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
  * lead to a {@link MorelDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
+ * item image. On tablets, the activity presents the list of items and
+ * item image side-by-side using two vertical panes.
  */
 public class MorelListActivity extends AppCompatActivity {
 
@@ -67,16 +68,16 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-    recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(MorelContent.ITEMS));
+    List<MorelItem> items = MorelDataSource.ITEMS;
+    recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(items));
 }
 
-public class SimpleItemRecyclerViewAdapter
-        extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<MorelContent.MorelItem> mValues;
+    private final List<MorelItem> morelItems;
 
-    public SimpleItemRecyclerViewAdapter(List<MorelContent.MorelItem> items) {
-        mValues = items;
+    public SimpleItemRecyclerViewAdapter(List<MorelItem> items) {
+        morelItems = items;
     }
 
     @Override
@@ -88,16 +89,16 @@ public class SimpleItemRecyclerViewAdapter
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.item = morelItems.get(position);
+        holder.commonNameView.setText(morelItems.get(position).commonName);
+        holder.scienceNameView.setText(morelItems.get(position).scienceName);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(MorelDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                    arguments.putString(MorelDetailFragment.ARG_ITEM_ID, holder.item.id.toString());
                     MorelDetailFragment fragment = new MorelDetailFragment();
                     fragment.setArguments(arguments);
                     getSupportFragmentManager().beginTransaction()
@@ -106,7 +107,7 @@ public class SimpleItemRecyclerViewAdapter
                 } else {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, MorelDetailActivity.class);
-                    intent.putExtra(MorelDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                    intent.putExtra(MorelDetailFragment.ARG_ITEM_ID, holder.item.id.toString());
 
                     context.startActivity(intent);
                 }
@@ -116,25 +117,25 @@ public class SimpleItemRecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return morelItems.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public MorelContent.MorelItem mItem;
+        private final View rowView;
+        private final TextView commonNameView;
+        private final TextView scienceNameView;
+        private MorelItem item;
 
         public ViewHolder(View view) {
             super(view);
-            mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            rowView = view;
+            commonNameView = (TextView) view.findViewById(R.id.id);
+            scienceNameView = (TextView) view.findViewById(R.id.content);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + scienceNameView.getText() + "'";
         }
     }
 }
