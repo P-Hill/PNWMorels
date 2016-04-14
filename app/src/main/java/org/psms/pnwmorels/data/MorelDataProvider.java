@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * Helper class for providing Morel content for the user interfaces.
- * (created by Android template wizards).
+ * Obviously a stub. A larger app would read the data from files.
  * <p>
  */
 public class MorelDataProvider {
@@ -85,7 +85,7 @@ public static final List<MorelItem> ITEMS = new ArrayList<MorelItem>();
 public static final Map<String, MorelItem> ITEM_MAP = new HashMap<String, MorelItem>();
 
 static {
-    // Add some sample items.
+    // initialize the sample items.
     for (int i = 0; i < SOURCE.length; i++) {
         addItem(createMorelItem(i));
     }

@@ -14,7 +14,7 @@ import org.psms.pnwmorels.data.MorelDataProvider;
 import org.psms.pnwmorels.data.MorelItem;
 
 /**
- * A fragment representing a single Morel detail screen.
+ * A fragment representing the content of a single Morel detail screen.
  * This fragment is either contained in a {@link MorelListActivity}
  * in two-pane mode (on tablets) or a {@link MorelDetailActivity}
  * on handsets.
@@ -57,6 +57,13 @@ public void onCreate(Bundle savedInstanceState) {
     }
 }
 
+/**
+ * fills in the individual views in the content of detail view.
+ * @param inflater
+ * @param container
+ * @param savedInstanceState
+ * @return the completed root view
+ */
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
                          Bundle savedInstanceState) {
@@ -64,7 +71,6 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 
     // Show the content
     if (item != null) {
-        // TODO add photographer field.
         ((TextView) rootView.findViewById(R.id.detail_brief)).setText(item.scienceName);
         ((TextView) rootView.findViewById(R.id.detail_long)).setText(item.content);
         if (item.image != null && item.image != "") {

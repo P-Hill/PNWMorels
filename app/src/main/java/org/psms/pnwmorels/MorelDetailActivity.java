@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 /**
  * An activity representing a single Morel detail screen. This
- * activity is only used narrow width devices. On tablet-size devices,
+ * activity is only with used narrow width devices. On tablet-size devices,
  * item image are presented side-by-side with a list of items
  * in a {@link MorelListActivity}.
  */

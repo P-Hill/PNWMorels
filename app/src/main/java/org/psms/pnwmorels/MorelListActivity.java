@@ -36,6 +36,11 @@ public class MorelListActivity extends AppCompatActivity {
  */
 private boolean mTwoPane;
 
+/**
+ * build the screen with toolbar, list, including a detail view, if we are on a large screen (see the various
+ * morel_list.xml files).
+ * @param savedInstanceState
+ */
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -44,17 +49,6 @@ protected void onCreate(Bundle savedInstanceState) {
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     toolbar.setTitle(getTitle());
-
-    /**
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
-    });
-     **/
 
     View recyclerView = findViewById(R.id.morel_list);
     assert recyclerView != null;
@@ -74,6 +68,9 @@ private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
     recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(items));
 }
 
+/**
+ * adaptor which creates the line items in the view.
+ */
 public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
     private final List<MorelItem> morelItems;
@@ -122,6 +119,9 @@ public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleIt
         return morelItems.size();
     }
 
+    /**
+     * a class which has the views for one line item in the view.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final View rowView;
         private final TextView commonNameView;

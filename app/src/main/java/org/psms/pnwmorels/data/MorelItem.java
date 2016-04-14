@@ -1,7 +1,7 @@
 package org.psms.pnwmorels.data;
 
 /**
- * An item representing the data for a piece of content.
+ * An item representing the data to be displayed.
  */
 public class MorelItem {
     public final Integer id;
