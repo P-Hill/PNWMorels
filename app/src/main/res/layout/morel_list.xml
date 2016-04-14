@@ -10,4 +10,6 @@
                                         android:layout_marginRight="10dp"
                                         app:layoutManager="LinearLayoutManager"
                                         tools:context="org.psms.pnwmorels.MorelListActivity"
-                                        tools:listitem="@layout/morel_list_content"/>
+                                        tools:listitem="@layout/morel_list_content"
+                                        android:padding="10dp"
+    />

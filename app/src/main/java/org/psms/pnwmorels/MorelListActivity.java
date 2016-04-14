@@ -45,6 +45,7 @@ protected void onCreate(Bundle savedInstanceState) {
     setSupportActionBar(toolbar);
     toolbar.setTitle(getTitle());
 
+    /**
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     fab.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -53,6 +54,7 @@ protected void onCreate(Bundle savedInstanceState) {
                     .setAction("Action", null).show();
         }
     });
+     **/
 
     View recyclerView = findViewById(R.id.morel_list);
     assert recyclerView != null;
