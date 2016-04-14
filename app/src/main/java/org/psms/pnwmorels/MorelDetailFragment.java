@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.psms.pnwmorels.data.MorelDataSource;
+import org.psms.pnwmorels.data.MorelDataProvider;
 import org.psms.pnwmorels.data.MorelItem;
 
 /**
@@ -47,7 +47,7 @@ public void onCreate(Bundle savedInstanceState) {
         // arguments. In a real-world scenario, use a Loader
         // to load content from a content provider.
         String key = getArguments().getString(ARG_ITEM_ID);
-        item = MorelDataSource.ITEM_MAP.get(key);
+        item = MorelDataProvider.ITEM_MAP.get(key);
 
         Activity activity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -64,7 +64,7 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 
     // Show the content
     if (item != null) {
-        // TODO put more fields here.
+        // TODO add photographer field.
         ((TextView) rootView.findViewById(R.id.detail_brief)).setText(item.scienceName);
         ((TextView) rootView.findViewById(R.id.detail_long)).setText(item.content);
         if (item.image != null && item.image != "") {

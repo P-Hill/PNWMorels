@@ -8,12 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
+ * Helper class for providing Morel content for the user interfaces.
+ * (created by Android template wizards).
  * <p>
- * TODO: Replace all uses of this class before publishing your app.
  */
-public class MorelDataSource {
+public class MorelDataProvider {
 
     private static final String[][] SOURCE = {
         { "1", "Morchella tomentosa",
@@ -71,8 +70,7 @@ public class MorelDataSource {
                     "woodchips used in landscaping. It has pale rides and darker pits. When touched it can bruise " +
                     "brownish orange to pinkish. According to DNA analysis it is neither a black nor a blond morel.",
                 "Steve Trudell",
-                "" + R.drawable.morchella_rufobrunnea_steve_trudell
-        }
+                "" + R.drawable.morchella_rufobrunnea_steve_trudell }
 
     };
 

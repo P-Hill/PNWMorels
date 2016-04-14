@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import org.psms.pnwmorels.data.MorelDataSource;
+import org.psms.pnwmorels.data.MorelDataProvider;
 import org.psms.pnwmorels.data.MorelItem;
 
 import java.util.List;
@@ -68,7 +68,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-    List<MorelItem> items = MorelDataSource.ITEMS;
+    List<MorelItem> items = MorelDataProvider.ITEMS;
     recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(items));
 }
 
