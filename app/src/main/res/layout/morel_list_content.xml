@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="0dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="2dp"
+              android:background="@color/background_material_item"
               android:orientation="vertical">
 
     <TextView
         android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin_tight"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="0dp"
         android:textStyle="bold"
         android:textAppearance="?attr/textAppearanceListItem"/>
 
@@ -16,7 +20,7 @@
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_margin="@dimen/text_margin_tight"
         android:textStyle="italic"
         android:textAppearance="?attr/textAppearanceSearchResultSubtitle"/>
 </LinearLayout>
